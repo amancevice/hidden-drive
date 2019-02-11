@@ -9,7 +9,8 @@
   },
   "description": "Strip `anyoneWithLink` permission from files in Google Drive.",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nyc": "^13.2.0"
   },
   "directories": {
     "test": "test"
@@ -27,7 +28,7 @@
     "url": "git+https://github.com/amancevice/hidden-drive.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "version": "0.0.1"
 }
