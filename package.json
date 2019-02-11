@@ -1,0 +1,33 @@
+{
+  "author": "smallweirdnumber",
+  "bugs": {
+    "url": "https://github.com/amancevice/hidden-drive/issues"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "googleapis": "^37.2.0"
+  },
+  "description": "Strip `anyoneWithLink` permission from files in Google Drive.",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://github.com/amancevice/hidden-drive#readme",
+  "keywords": [
+    "GoogleDrive",
+    "privacy"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "hidden-drive",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amancevice/hidden-drive.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "0.0.1"
+}
