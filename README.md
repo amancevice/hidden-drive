@@ -23,6 +23,9 @@ const drive  = hidden.drive(client);
 // Filter file(s)
 drive.filter((x) => x.id !== 'some-file-ID');
 
-// Hide files (accepts same options as https://developers.google.com/drive/api/v3/reference/files/list)
+// Hide all files (accepts same options as https://developers.google.com/drive/api/v3/reference/files/list)
 drive.hide({pageSize: 25}).then(console.log);
+
+// Hide all files in a particular folder
+drive.hide({q: `'${myFolderId}' in parents`})
 ```
