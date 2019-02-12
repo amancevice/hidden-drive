@@ -23,6 +23,6 @@ const drive  = hidden.drive(client);
 // Filter file(s)
 drive.filter((x) => x.id !== 'some-file-ID');
 
-// Hide files
-drive.hide().then(console.log);
+// Hide files (accepts same options as https://developers.google.com/drive/api/v3/reference/files/list)
+drive.hide({pageSize: 25}).then(console.log);
 ```
