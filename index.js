@@ -1,40 +1,34 @@
-const hideFile = (drive, data) => {
-  return async (file) => {
-    const options = {fileId:file.id, permissionId:'anyoneWithLink'};
-    return drive.permissions.delete(options)
-      // Store hidden file object
-      .then((res)  => { data.hidden = data.hidden.concat(file); })
-      // Store error
-      .catch((err) => { data.errors = data.errors.concat(file); });
-  };
-};
-
-const hidePage = (drive) => {
-  return async (result) => {
-    var data = {hidden:[], errors:[]};
-    if (result.data.nextPageToken) {
-      data.nextPageToken = result.data.nextPageToken;
-    }
-    await Promise.all(result.data.files.map(hideFile(drive, data)));
-    return data;
-  };
-};
-
-const hide = (drive) => {
-  return async (options = {}) => {
-    options.q = options.q || `visibility='anyoneWithLink'`;
-    return {
-      data: await drive.files.list(options).then(hidePage(drive)),
-    };
-  };
-};
-
-let drive;
-
 exports.drive = (client) => {
-  drive = {
+  var app = {
+    _filters: [],
     client: client,
-    hide: hide(client),
+
+    filter: function filter(fn) {
+      this._filters = this._filters.concat(fn);
+      return this;
+    },
+
+    hide: async function hide(options = {}) {
+      var res  = await this.list(options),
+          data = {hidden:[], errors:[]};
+      if (res.data.nextPageToken) {
+        data.nextPageToken = res.data.nextPageToken;
+      }
+      return Promise.all(res.data.files.map((file) => {
+        return this.client.permissions.delete({fileId:file.id, permissionId:'anyoneWithLink'})
+          // Store hidden file object
+          .then((res)  => { data.hidden = data.hidden.concat(file); })
+          // Store error
+          .catch((err) => { data.errors = data.errors.concat(file); });
+      })).then(() => data);
+    },
+
+    list: async function list(options = {}) {
+      options.q = `(visibility='anyoneWithLink') and (${options.q || ''})`;
+      var res = await this.client.files.list(options);
+      res.data.files = this._filters.reduce((x, fn) => x.filter(fn), res.data.files);
+      return res;
+    },
   }
-  return drive;
-}
+  return app;
+};
