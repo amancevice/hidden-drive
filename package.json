@@ -7,9 +7,9 @@
   "description": "Strip `anyoneWithLink` permission from files in Google Drive.",
   "devDependencies": {
     "dotenv": "^6.2.0",
-    "googleapis": "^37.2.0",
+    "googleapis": "^48.0.0",
     "mocha": "^5.2.0",
-    "nyc": "^13.3.0"
+    "nyc": "^15.0.0"
   },
   "directories": {
     "test": "test"
