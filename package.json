@@ -9,7 +9,7 @@
     "dotenv": "^6.2.0",
     "googleapis": "^48.0.0",
     "mocha": "^5.2.0",
-    "nyc": "^15.0.0"
+    "nyc": "^15.0.1"
   },
   "directories": {
     "test": "test"
