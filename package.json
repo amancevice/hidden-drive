@@ -3,11 +3,10 @@
   "bugs": {
     "url": "https://github.com/amancevice/hidden-drive/issues"
   },
-  "dependencies": {},
   "description": "Strip `anyoneWithLink` permission from files in Google Drive.",
   "devDependencies": {
     "dotenv": "^6.2.0",
-    "googleapis": "^48.0.0",
+    "googleapis": "^67.0.0",
     "mocha": "^7.1.1",
     "nyc": "^15.0.1"
   },
